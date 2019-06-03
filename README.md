@@ -1,4 +1,4 @@
-# PiedPiper Flake8 Function
+# PiedPiper Noop Function
 
 ### Table of Contents
 
@@ -27,8 +27,8 @@ OpenFaaS
 To install this function on OpenFaaS do the following after authentication:
 
 ```
-git clone https://github.com/AFCYBER-DREAM/piedpiper-flake8-faas.git
-cd piedpiper-flake8-faas
+git clone https://github.com/AFCYBER-DREAM/piedpiper-noop-faas.git
+cd piedpiper-noop-faas
 faas build
 faas deploy
 ```
@@ -41,51 +41,11 @@ faas ls
 
 ## Inputs and Outputs
 
-This function expects to receive its data via an HTTP POST request. The format of the request should be as follows:
-
-1. A zipfile containing the files to be linted
-2. A run_vars.yml file, in the root of the zipfile which looks like the following:
-
-```yaml
-ci:
-  ci_provider: gitlab-ci
-  ci_provider_config: {{ contents of .gitlab-ci.yml }}
-file_config:
-  - file: test.sh
-    linter: noop
-  - file: etc
-pi_global_vars:
-  ci_provider: gitlab-ci
-  project_name: {{ project_name }}
-  vars_dir: default_vars.d
-  version: {{ version }}
-pi_lint_pipe_vars:
-  run_pipe: True
-  url: http://172.17.0.1:8080/function
-  version: latest
-pi_validate_pipe_vars:
-  run_pipe: True
-  url: http://172.17.0.1:8080/function
-  policy:
-    enabled: True
-    enforcing: True
-    version: 0.0.1
-options: None
-```
-
-Piedpiper-flake8-faas will take these run_vars.yml and build
-a flake8 command based on the `options` dict that is found. It will
-then perform a `flake8` and return any stdout and stderr to the user.
 
 ## Running the tests
 
-Currently we only have functional tests and linting tests for this
-repository. These tests can be run by invoking tox.
-
 ```bash
-tox -e lint # OR
-tox -e functional # OR
-tox
+tox -e lint
 ```
 
 ### Test Prerequisites
@@ -106,11 +66,11 @@ Please read [CONTRIBUTING.md](https://github.com/AFCYBER-DREAM/piedpiper-picli) 
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/piedpiper-flake8-faas/tags).
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/piedpiper-noop-faas/tags).
 
 ## Authors
 
-See also the list of [contributors](https://github.com/AFCYBER-DREAM/piedpiper-flake8-faas/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/AFCYBER-DREAM/piedpiper-noop-faas/contributors) who participated in this project.
 
 ## License
 MIT
