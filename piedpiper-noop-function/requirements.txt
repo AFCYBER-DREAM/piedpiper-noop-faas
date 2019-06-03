@@ -1,0 +1,4 @@
+PyYAML
+requests
+flake8
+minio

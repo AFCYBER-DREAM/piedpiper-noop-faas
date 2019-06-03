@@ -1,0 +1,19 @@
+---
+provider:
+  name: faas
+  gateway: http://127.0.0.1:8080
+functions:
+  piedpiper-noop-gateway:
+    lang: python3-flask
+    handler: ./piedpiper-noop-gateway
+    image: piedpiper-noop-gateway:latest
+    secrets:
+      - storage-access-key
+      - storage-secret-key
+  piedpiper-noop-function:
+    lang: python3-flask
+    handler: ./piedpiper-noop-function
+    image: piedpiper-noop-function:latest
+    secrets:
+      - storage-access-key
+      - storage-secret-key
