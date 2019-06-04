@@ -1,4 +1,5 @@
 # PiedPiper Noop Function
+[![Build Status](https://travis-ci.com/AFCYBER-DREAM/piedpiper-noop-faas.svg?branch=master)](https://travis-ci.com/AFCYBER-DREAM/piedpiper-noop-faas)
 
 ### Table of Contents
 
@@ -57,7 +58,7 @@ There is an simple bash script which can be used to turn a local machine into
 an OpenFaaS development environment. This can be found in `tools/scripts/setup-env.sh`.
 This is the script that is being used by Travis-CI to deploy the test environment.
 
-We also have an ansible role available to setup the OpenFaaS environment. This 
+We also have an ansible role available to setup the OpenFaaS environment. This
 can be found [here](https://github.com/AFCYBER-DREAM/ansible-collection-pidev)
 
 ## Contributing
@@ -73,4 +74,5 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 See also the list of [contributors](https://github.com/AFCYBER-DREAM/piedpiper-noop-faas/contributors) who participated in this project.
 
 ## License
+
 MIT
