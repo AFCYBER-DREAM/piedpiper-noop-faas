@@ -1,9 +1,24 @@
+import zipfile
 from .config import Config
-
 from flask import g, request
 import traceback
-
 from piedpiper.gman import client as gman_client
+
+
+def read_secrets():
+    secrets = {}
+    with open("/var/openfaas/secrets/storage-access-key") as access_key:
+        secrets.update({"access_key": access_key.read().strip("\n")})
+    with open("/var/openfaas/secrets/storage-secret-key") as secret_key:
+        secrets.update({"secret_key": secret_key.read().strip("\n")})
+
+    return secrets
+
+
+def unzip_files(zip_file, directory):
+    zip_ref = zipfile.ZipFile(zip_file, "r")
+    zip_ref.extractall(directory)
+    zip_ref.close()
 
 
 def gman_activate(status):
@@ -13,6 +28,7 @@ def gman_activate(status):
             function_name = f"{Config['name']}"
             run_id = request.get_json().get("run_id")
             project = request.get_json().get("project")
+            thread_id = request.get_json().get("thread_id")
 
             task = gman_client.request_new_task_id(
                 run_id=run_id,
@@ -20,6 +36,7 @@ def gman_activate(status):
                 status=status,
                 project=project,
                 caller=function_name,
+                thread_id=thread_id,
             )
             g.task = task
             try:

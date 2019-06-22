@@ -1,42 +1,48 @@
-from .util import request_new_task_id, call_noop_function, update_task_id_status
 from .config import Config
+from .util import gman_activate, gman_delegate
+from flask import g
+
+import json
+import requests
 
 
+@gman_activate(status="started")
 def handle(request):
-    """handle a request to the function
-    Args:
-        req (str): request body
     """
-    gman_url = Config["gman"]["url"]
+    Entrypoint to the noop FaaS.
+    :param request: The request object from Flask
+    This object is required to have the following JSON parameters:
+    * run_id: The run_id of the task
+    * project: The project name of the run
+    * configs: A list containing the configuration dictionaries for the run.
+    * stage: The stage that is being run.
+    * artifacts: A list of dictionaries containing information on the artifacts
+    required for this run
+    :return:
+    """
+    executor_url = Config["executor_url"]
 
     run_id = request.get_json().get("run_id")
     project = request.get_json().get("project")
     configs = request.get_json().get("configs")
     stage = request.get_json().get("stage")
+    artifacts = request.get_json().get("artifacts")
+    task = g.task
 
-    internal_task_id = request_new_task_id(
-        run_id=run_id, gman_url=gman_url, status="started", project=project
+    data = {
+        "run_id": run_id,
+        "thread_id": task["task"]["thread_id"],
+        "project": project,
+        "configs": configs,
+        "stage": stage,
+        "artifacts": artifacts,
+    }
+
+    headers = {"Content-Type": "application/json"}
+
+    requests.post(
+        executor_url,
+        data=json.dumps(data),
+        headers=headers,
+        hooks={"response": gman_delegate},
     )
-
-    return_value = call_noop_function(
-        run_id=run_id,
-        faas_url="http://172.17.0.1:8080/async-function/piedpiper-noop-function",
-        project=project,
-        task_id=internal_task_id,
-        stage=stage,
-        configs=configs,
-    )
-
-    return_value.raise_for_status()
-    if return_value.status_code == 202:
-        update_task_id_status(
-            gman_url=gman_url,
-            task_id=internal_task_id,
-            status="delegated",
-            message="Delegated execution to noop executor",
-            caller="noop_gateway",
-        )
-        return {"task_id": internal_task_id}
-
-    else:
-        return {"task_id": return_value.status_code}
