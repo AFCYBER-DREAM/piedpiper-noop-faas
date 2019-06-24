@@ -3,21 +3,21 @@ provider:
   name: faas
   gateway: http://127.0.0.1:8080
 functions:
-  piedpiper-noop-gateway:
+  piperci-noop-gateway:
     environment:
       write_debug: true
     lang: python3-flask
-    handler: ./piedpiper-noop-gateway
-    image: piedpiper-noop-gateway:latest
+    handler: ./piperci-noop-gateway
+    image: piperci-noop-gateway:latest
     secrets:
       - storage-access-key
       - storage-secret-key
-  piedpiper-noop-executor:
+  piperci-noop-executor:
     environment:
       write_debug: true
     lang: python3-flask
-    handler: ./piedpiper-noop-executor
-    image: piedpiper-noop-executor:latest
+    handler: ./piperci-noop-executor
+    image: piperci-noop-executor:latest
     secrets:
       - storage-access-key
       - storage-secret-key

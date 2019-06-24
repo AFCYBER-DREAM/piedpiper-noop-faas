@@ -1,0 +1,3 @@
+requests
+PyYAML
+pipercilib@git+https://github.com/ragingpastry/python-piperci.git@artman-libs
