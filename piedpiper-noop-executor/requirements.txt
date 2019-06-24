@@ -1,0 +1,5 @@
+PyYAML
+requests
+flake8
+minio
+piedpiperlib@git+https://github.com/ragingpastry/python-piedpiper.git@artman-libs

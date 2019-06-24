@@ -1,7 +1,7 @@
 FROM python:3.7-alpine
 
 # Alternatively use ADD https:// (which will not be cached by Docker builder)
-RUN apk --no-cache add curl \
+RUN apk --no-cache add curl git \
     && echo "Pulling watchdog binary from Github." \
     && curl -sSLf https://github.com/openfaas-incubator/of-watchdog/releases/download/0.4.6/of-watchdog > /usr/bin/fwatchdog \
     && chmod +x /usr/bin/fwatchdog \

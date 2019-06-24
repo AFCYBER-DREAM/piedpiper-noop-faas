@@ -1,2 +1,3 @@
 requests
 PyYAML
+piedpiperlib@git+https://github.com/ragingpastry/python-piedpiper.git@artman-libs
