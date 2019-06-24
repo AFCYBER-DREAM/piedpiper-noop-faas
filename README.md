@@ -1,5 +1,5 @@
-# PiedPiper Noop Function
-[![Build Status](https://travis-ci.com/AFCYBER-DREAM/piedpiper-noop-faas.svg?branch=master)](https://travis-ci.com/AFCYBER-DREAM/piedpiper-noop-faas)
+# PiperCI Noop Function
+[![Build Status](https://travis-ci.com/AFCYBER-DREAM/piperci-noop-faas.svg?branch=master)](https://travis-ci.com/AFCYBER-DREAM/piperci-noop-faas)
 
 ### Table of Contents
 
@@ -28,8 +28,8 @@ OpenFaaS
 To install this function on OpenFaaS do the following after authentication:
 
 ```
-git clone https://github.com/AFCYBER-DREAM/piedpiper-noop-faas.git
-cd piedpiper-noop-faas
+git clone https://github.com/AFCYBER-DREAM/piperci-noop-faas.git
+cd piperci-noop-faas
 faas build
 faas deploy
 ```
@@ -63,15 +63,15 @@ can be found [here](https://github.com/AFCYBER-DREAM/ansible-collection-pidev)
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://github.com/AFCYBER-DREAM/piedpiper-picli) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/AFCYBER-DREAM/piperci-picli) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/piedpiper-noop-faas/tags).
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/piperci-noop-faas/tags).
 
 ## Authors
 
-See also the list of [contributors](https://github.com/AFCYBER-DREAM/piedpiper-noop-faas/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/AFCYBER-DREAM/piperci-noop-faas/contributors) who participated in this project.
 
 ## License
 

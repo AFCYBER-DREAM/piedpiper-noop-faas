@@ -2,7 +2,7 @@ import zipfile
 from .config import Config
 from flask import g, request
 import traceback
-from piedpiper.gman import client as gman_client
+from piperci.gman import client as gman_client
 
 
 def read_secrets():
